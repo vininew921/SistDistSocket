@@ -59,7 +59,7 @@ internal class Server
     {
         lock (this)
         {
-            message = systemMessage ? $"SYSTEM: {message}\r\n" : $"{fromWorker.Username}: {message}\r\n";
+            message = systemMessage ? $"{message}\r\n" : $"{fromWorker.Username}: {message}\r\n";
 
             for (int i = 0; i < _workers.Count; i++)
             {

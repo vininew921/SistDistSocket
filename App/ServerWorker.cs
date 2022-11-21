@@ -44,7 +44,7 @@ internal class ServerWorker
                 {
                     if (Username == null)
                     {
-                        Username = message;
+                        Username = $"<{message}>";
                         string welcomeMessage = $"{Username} entrou!";
                         MessageReceived.Invoke(this, new MessageEventArgs(welcomeMessage, true));
                     }

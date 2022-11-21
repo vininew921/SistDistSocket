@@ -65,7 +65,11 @@ internal class Client
 
                 if (!string.IsNullOrEmpty(message))
                 {
+                    RoomUser? user = RoomUser.GetFromMessage(message);
+
+                    Console.ForegroundColor = user == null ? ConsoleColor.White : user.Color;
                     Console.WriteLine(message);
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
             }
         }
