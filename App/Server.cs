@@ -13,6 +13,8 @@ internal class Server
 
     public bool Initialized = false;
 
+    public static IPAddress ServerAddress;
+
     #endregion Properties
 
     #region Events
@@ -25,15 +27,22 @@ internal class Server
 
     public void Initialize(int port)
     {
+        Console.WriteLine("Digite o IP para hostear (deixe em branco para localhost): )");
+        string hostIp = Console.ReadLine()!;
+
         Console.WriteLine("Criando sala...");
 
-        _server = new TcpListener(IPAddress.Any, port);
+        ServerAddress = Helper.GetIpAddress(hostIp);
+
+        _server = new TcpListener(ServerAddress, port);
         _server.Start();
 
         Initialized = true;
 
         Console.WriteLine("Sala criada com sucesso, aguardando conexões");
     }
+
+    public void Start() => new Thread(WaitConnections).Start();
 
     public void WaitConnections()
     {

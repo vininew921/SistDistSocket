@@ -19,7 +19,7 @@ internal static class Helper
         else
         {
             IPHostEntry? host = Dns.GetHostEntry(address);
-            return host.AddressList.First();
+            return host.AddressList.First(x => x.AddressFamily == AddressFamily.InterNetwork);
         }
     }
 }

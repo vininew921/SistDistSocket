@@ -11,12 +11,22 @@ internal class Client
     private readonly TcpClient _socket;
     private readonly Stream _socketStream;
 
-    public Client(int port)
+    public Client(int port, bool serverAsClient)
     {
-        Console.WriteLine("IP: ");
-        string ip = Console.ReadLine()!;
+        string ip = "localhost";
+        IPAddress ipAddress;
 
-        IPAddress ipAddress = Helper.GetIpAddress(ip);
+        if (!serverAsClient)
+        {
+            Console.WriteLine("IP: ");
+            ip = Console.ReadLine()!;
+            ipAddress = Helper.GetIpAddress(ip);
+        }
+        else
+        {
+            ipAddress = Server.ServerAddress;
+        }
+
         IPEndPoint endpoint = new IPEndPoint(ipAddress, port);
 
         try

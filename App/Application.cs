@@ -40,7 +40,7 @@ internal static class Application
                 break;
 
             case AppType.Client:
-                RunAsClient();
+                RunAsClient(false);
                 break;
 
             case AppType.Shutdown:
@@ -59,13 +59,15 @@ internal static class Application
         server.Initialize(_port);
         if (server.Initialized)
         {
-            server.WaitConnections();
+            server.Start();
         }
+
+        RunAsClient(true);
     }
 
-    private static void RunAsClient()
+    private static void RunAsClient(bool serverAsClient)
     {
-        Client client = new Client(_port);
+        Client client = new Client(_port, serverAsClient);
         client.Start();
     }
 
