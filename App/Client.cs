@@ -8,8 +8,8 @@ internal class Client
 {
     public bool Initialized = false;
 
-    private readonly TcpClient _socket;
-    private readonly Stream _socketStream;
+    private readonly TcpClient _socket = default!;
+    private readonly Stream _socketStream = default!;
 
     public Client(int port, bool serverAsClient)
     {
@@ -17,7 +17,7 @@ internal class Client
 
         if (!serverAsClient)
         {
-            Console.WriteLine("IP: ");
+            Console.Write("IP: ");
             string ip = Console.ReadLine()!;
             ipAddress = Helper.GetIpAddress(ip);
         }
