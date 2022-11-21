@@ -7,13 +7,13 @@ internal class Server
 {
     #region Properties
 
-    private TcpListener _server = new TcpListener(IPAddress.Any, 3393);
+    private readonly TcpListener _server;
 
     private readonly List<ServerWorker> _workers = new List<ServerWorker>();
 
     public bool Initialized = false;
 
-    public static IPAddress ServerAddress;
+    public static IPAddress ServerAddress = default!;
 
     #endregion Properties
 
@@ -25,9 +25,9 @@ internal class Server
 
     #endregion Events
 
-    public void Initialize(int port)
+    public Server(int port)
     {
-        Console.WriteLine("Digite o IP para hostear (deixe em branco para localhost): )");
+        Console.Write("Digite o IP para hostear (deixe em branco para localhost): ");
         string hostIp = Console.ReadLine()!;
 
         Console.WriteLine("Criando sala...");

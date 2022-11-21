@@ -13,13 +13,12 @@ internal class Client
 
     public Client(int port, bool serverAsClient)
     {
-        string ip = "localhost";
         IPAddress ipAddress;
 
         if (!serverAsClient)
         {
             Console.WriteLine("IP: ");
-            ip = Console.ReadLine()!;
+            string ip = Console.ReadLine()!;
             ipAddress = Helper.GetIpAddress(ip);
         }
         else

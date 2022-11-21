@@ -55,8 +55,7 @@ internal static class Application
 
     private static void RunAsServer()
     {
-        Server server = new Server();
-        server.Initialize(_port);
+        Server server = new Server(_port);
         if (server.Initialized)
         {
             server.Start();
